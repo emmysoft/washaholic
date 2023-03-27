@@ -1,12 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
 
-const SIgnupButton = ({ children, onPress }) => {
+const SIgnupButton = ({ children, onPress, disabled }) => {
   return (
-    <Pressable onPress={onPress}>
-      <View style={styles.signupbtn}>
-        <Text style={styles.signuptext}>{children}</Text>
-      </View>
+    <Pressable onPress={onPress} style={styles.signupbtn} disabled={disabled}>
+      <Text style={styles.signuptext}>{children}</Text>
     </Pressable>
   );
 };

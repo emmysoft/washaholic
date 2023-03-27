@@ -1,11 +1,9 @@
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, Text, Pressable } from "react-native";
 
 const LoginButton = ({ children, onPress }) => {
   return (
-    <Pressable onPress={onPress} android_ripple={true}>
-      <View style={styles.button}>
-        <Text style={styles.buttonText}>{children}</Text>
-      </View>
+    <Pressable onPress={onPress} style={styles.button}>
+      <Text style={styles.buttonText}>{children}</Text>
     </Pressable>
   );
 };
@@ -14,12 +12,13 @@ export default LoginButton;
 
 const styles = StyleSheet.create({
   button: {
-    justifyContent: 'center',
+    justifyContent: "center",
     width: 300,
     height: 55,
     backgroundColor: "#054a98",
     borderRadius: 30,
     marginHorizontal: 20,
+    cursor: "pointer",
   },
   buttonText: {
     color: "#fff",
