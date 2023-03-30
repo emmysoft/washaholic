@@ -1,14 +1,6 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  Image,
-  TextInput,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, Text, Image, ScrollView } from "react-native";
 import { useState } from "react";
-import { IoFingerPrint, IoPersonOutline } from "react-icons/io";
-// import { GiPadlock } from "react-icons/gi";
+import { Ionicons } from "@expo/vector-icons";
 
 import CustomInput from "../components/CustomInput";
 import LoginButton from "../components/LoginButton";
@@ -16,11 +8,6 @@ import LoginButton from "../components/LoginButton";
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  // const icon = {
-  //   width: 69,
-  //   height: 89,
-  // };
 
   return (
     <>
@@ -56,26 +43,17 @@ const Login = ({ navigation }) => {
               </View>
               <View>
                 <Text
-                  style={styles.logText}
+                  style={styles.forgot}
                   onPress={() => navigation.navigate("Password")}
                 >
                   Forgot Password?
                 </Text>
               </View>
             </View>
-            <LoginButton onPress={() => navigation.navigate("Profile")}>
+            <LoginButton onPress={() => navigation.navigate("Home")}>
               Sign in
             </LoginButton>
-            <Text style={styles.optionText}>
-              New on our platform?
-              <Text
-                style={styles.optionLink}
-                onPress={() => navigation.navigate("Signup")}
-              >
-                Create an account
-              </Text>
-            </Text>
-            {/* <View style={styles.options}>
+            <View style={styles.options}>
               <Text style={styles.optionText}>
                 New on our platform?
                 <Text
@@ -85,9 +63,9 @@ const Login = ({ navigation }) => {
                   Create an account
                 </Text>
               </Text>
-              <IoFingerPrint style={{ width: 69, height: 89 }} />
+              <Ionicons name="finger-print" size={50} color="#054a98" />
               <Text style={styles.touch}>Use Touch ID</Text>
-            </View> */}
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -109,10 +87,10 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   loginImage: {
-    width: 203,
+    width: 210,
     height: 180,
-    marginHorizontal: 50,
-    marginVertical: 50,
+    marginHorizontal: 80,
+    marginVertical: 70,
   },
   loginContainer: {
     backgroundColor: "#fff",
@@ -126,8 +104,9 @@ const styles = StyleSheet.create({
   loginhead: {
     marginVertical: 20,
     fontStyle: "normal",
-    fontWeight: 600,
-    fontSize: 30,
+    fontWeight: 500,
+    fontFamily: "roboto",
+    fontSize: 22,
     color: "#054a98",
     textAlign: "center",
   },
@@ -159,12 +138,20 @@ const styles = StyleSheet.create({
   logText: {
     color: "#04509c",
   },
+  forgot: {
+    fontFamily: "roboto",
+    color: "#04509c",
+    fontWeight: 700,
+    fontSize: 14,
+    width: 130,
+  },
   options: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 28,
+    marginTop: 24,
+    gap: 10,
   },
   optionText: {
     fontSize: 14,
@@ -178,9 +165,9 @@ const styles = StyleSheet.create({
     color: "#054a98",
   },
   touch: {
-    width: 111,
     fontWeight: 500,
     fontSize: 20,
     color: "#443d3d",
+    fontFamily: "roboto-italic"
   },
 });

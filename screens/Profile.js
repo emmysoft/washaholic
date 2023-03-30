@@ -1,8 +1,26 @@
 import { StyleSheet, ScrollView, Image, View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import React from "react";
+import { useEffect } from "react";
+import IconButton from "../components/IconButton";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
+  
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <IconButton
+            name="home"
+            size={25}
+            color="#054A98"
+            onPress={() => navigation.navigate("Home")}
+            style={{ paddingRight: 24 }}
+          />
+        );
+      },
+    });
+  }, [navigation]);
+
   return (
     <ScrollView style={styles.scroll}>
       <View style={styles.container}>
@@ -11,13 +29,13 @@ const Profile = () => {
           alt="logo"
           style={styles.profilePics}
         />
-        <Text style={styles.profilename}>John Doe</Text>
+        <Text style={styles.profilename}> Welcome John Doe</Text>
         <View style={styles.favorite}>
           <Text style={styles.favText}>Your Favorites </Text>
           <View style={styles.stars}>
-            <AntDesign name="star" size={24} color={"#ffd700"} />
-            <AntDesign name="star" size={24} color={"#ffd700"} />
-            <AntDesign name="star" size={24} color={"#ffd700"} />
+            <IconButton name="star" size={24} color={"#ffd700"} />
+            <IconButton name="star" size={24} color={"#ffd700"} />
+            <IconButton name="star" size={24} color={"#ffd700"} />
           </View>
         </View>
         <View style={styles.favContainer}>
@@ -27,30 +45,60 @@ const Profile = () => {
               alt="image"
               style={styles.drycleaner}
             />
-            <Text>YinkLean Services</Text>
-            <Text>National Assembly lodge, Apatapiti, South Gate</Text>
-            <AntDesign name="star" size={24} color={"#ffd700"} />
+            <Text style={styles.bizName}>YinkLean Services</Text>
+            <Text style={styles.bizAddress}>
+              National Assembly lodge, Apatapiti, South Gate
+            </Text>
+            <IconButton
+              name="star"
+              size={24}
+              color={"#ffd700"}
+              style={styles.bizStar}
+            />
           </View>
           <View style={styles.services}>
-          <Image
+            <Image
               source={require("../assets/cloths.jpg")}
               alt="image"
               style={styles.drycleaner}
             />
-            <Text>YinkLean Services</Text>
-            <Text>National Assembly lodge, Apatapiti, South Gate</Text>
-            <AntDesign name="star" size={24} color={"#ffd700"} />
+            <Text style={styles.bizName}>YinkLean Services</Text>
+            <Text style={styles.bizAddress}>
+              National Assembly lodge, Apatapiti, South Gate
+            </Text>
+            <IconButton
+              name="star"
+              size={24}
+              color={"#ffd700"}
+              style={styles.bizStar}
+            />
           </View>
           <View style={styles.services}>
-          <Image
+            <Image
               source={require("../assets/cloths.jpg")}
               alt="image"
               style={styles.drycleaner}
             />
-            <Text>YinkLean Services</Text>
-            <Text>National Assembly lodge, Apatapiti, South Gate</Text>
-            <AntDesign name="star" size={24} color={"#ffd700"} />
+            <Text style={styles.bizName}>YinkLean Services</Text>
+            <Text style={styles.bizAddress}>
+              National Assembly lodge, Apatapiti, South Gate
+            </Text>
+            <IconButton
+              name="star"
+              size={24}
+              color={"#ffd700"}
+              style={styles.bizStar}
+            />
           </View>
+        </View>
+        <View style={styles.home}>
+          <IconButton name="log-out" size={24} color="#fff" />
+          <Text
+            style={styles.hometext}
+            onPress={() => navigation.navigate("Welcome")}
+          >
+            Logout
+          </Text>
         </View>
       </View>
     </ScrollView>
@@ -134,5 +182,42 @@ const styles = StyleSheet.create({
     padding: 30,
     borderWidth: 3,
     marginHorizontal: 40,
+  },
+  home: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 10,
+    borderWidth: 2,
+    borderColor: "#ff0000",
+    borderRadius: 10,
+    backgroundColor: "#ff0000",
+  },
+  hometext: {
+    fontWeight: 500,
+    fontSize: 20,
+    color: "#fff",
+    textAlign: "center",
+    padding: 15,
+  },
+  bizName: {
+    textAlign: "center",
+    fontWeight: 300,
+    fontSize: 20,
+    textAlign: "center",
+    color: "#1976D2",
+    padding: 10,
+  },
+  bizAddress: {
+    textAlign: "center",
+    fontWeight: 200,
+    fontSize: 20,
+    fontStyle: "normal",
+  },
+  bizStar: {
+    justifyContent: "center",
+    marginHorizontal: 120,
+    padding: 10,
   },
 });

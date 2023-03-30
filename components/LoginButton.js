@@ -1,8 +1,8 @@
 import { StyleSheet, Text, Pressable } from "react-native";
 
-const LoginButton = ({ children, onPress }) => {
+const LoginButton = ({ children, onPress, disabled }) => {
   return (
-    <Pressable onPress={onPress} style={styles.button}>
+    <Pressable onPress={onPress} style={styles.button} disabled={disabled}>
       <Text style={styles.buttonText}>{children}</Text>
     </Pressable>
   );

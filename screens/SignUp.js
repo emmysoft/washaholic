@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useState } from "react";
-import { FaFacebookF } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 import CustomInput from "../components/CustomInput";
-import SIgnupButton from "../components/SIgnupButton";
+import LoginButton from "../components/LoginButton";
 
 const SignUp = ({ navigation }) => {
   const [username, setUserName] = useState("");
@@ -17,7 +17,7 @@ const SignUp = ({ navigation }) => {
         <View style={styles.signupPage}>
           <Image
             source={require("../assets/washaholic.png")}
-            width={200}
+            width={210}
             height={180}
             alt="logo"
             style={styles.signupImage}
@@ -42,22 +42,35 @@ const SignUp = ({ navigation }) => {
                 secureTextEntry={true}
               />
             </View>
-            <SIgnupButton onPress={() => navigation.navigate("Profile")}>
-              Sign Up
-            </SIgnupButton>
+            <View style={styles.butn}>
+              <LoginButton
+                onPress={() => navigation.navigate("Home")}
+                disabled={false}
+              >
+                Sign Up
+              </LoginButton>
+            </View>
+            <View style={styles.options}>
+              <View style={styles.signupoptions}>
+                <View style={styles.span}></View>
+                <Text style={styles.option}>Or</Text>
+                <View style={styles.span}></View>
+              </View>
+              <View style={styles.social}>
+                <AntDesign name="google" size={24} color="#ff0000" />
+                <FontAwesome5 name="facebook-f" size={24} color="#1976D2" />
+              </View>
+              <Text style={styles.signText}>
+                Already have an account?
+                <Text
+                  onPress={() => navigation.navigate("Login")}
+                  style={styles.lastLink}
+                >
+                  Login
+                </Text>
+              </Text>
+            </View>
           </View>
-          {/* <View>
-        <View style={styles.signupoptions}>
-          <View></View>
-          <Text style={styles.option}>Or</Text>
-          <View></View>
-        </View>
-        <View style={styles.social}>
-          <FcGoogle />
-          <FaFacebookF />
-        </View>
-        <Text>Already have an account? Login</Text>
-      </View> */}
         </View>
       </ScrollView>
     </>
@@ -78,12 +91,12 @@ const styles = StyleSheet.create({
     alignContent: "center",
   },
   signupContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: "#fff",
-    borderRadius: 10,
+    borderRadius: 20,
     shadowColor: "#000000",
     shadowOpacity: 1,
     shadowOffset: { width: -2, height: 4 },
@@ -100,26 +113,64 @@ const styles = StyleSheet.create({
   signupImage: {
     width: 200,
     height: 180,
-    marginHorizontal: 50,
-    marginVertical: 50,
+    marginHorizontal: 80,
+    marginVertical: 70,
+  },
+  options: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 15,
+    marginTop: 30,
+    padding: 30,
   },
   signupInput: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 10,
+    // gap: 10,
+  },
+  butn: {
+    padding: 10,
   },
   signupoptions: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
-    alignContent: "center",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    gap: 32,
+  },
+  span: {
+    height: 0,
+    width: 150,
+    borderWidth: 0.5,
+    borderColor: "0.718551px solid #054A98",
+  },
+  option: {
+    width: 23,
+    fontWeight: 400,
+    fontSize: 14,
+    color: "#665D5D",
   },
   social: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
+    gap: 50,
+  },
+  signText: {
+    width: 250,
+    fontWeight: 400,
+    fontSize: 14,
+    color: "#665d5d",
+    textAlign: "center",
+  },
+  lastLink: {
+    color: "#04509C",
+    fontWeight: 500,
+    fontSize: 15,
   },
 });
