@@ -46,6 +46,7 @@ const SignUp = ({ navigation }) => {
               <LoginButton
                 onPress={() => navigation.navigate("Home")}
                 disabled={false}
+                style={styles.button}
               >
                 Sign Up
               </LoginButton>
@@ -115,6 +116,15 @@ const styles = StyleSheet.create({
     height: 180,
     marginHorizontal: 80,
     marginVertical: 70,
+  },
+  button: {
+    justifyContent: "center",
+    width: 300,
+    height: 55,
+    backgroundColor: "#054a98",
+    borderRadius: 30,
+    marginHorizontal: 40,
+    cursor: "pointer",
   },
   options: {
     display: "flex",

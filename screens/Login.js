@@ -50,7 +50,7 @@ const Login = ({ navigation }) => {
                 </Text>
               </View>
             </View>
-            <LoginButton onPress={() => navigation.navigate("Home")}>
+            <LoginButton style={styles.button} onPress={() => navigation.navigate("Home")}>
               Sign in
             </LoginButton>
             <View style={styles.options}>
@@ -145,6 +145,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     width: 130,
   },
+  button: {
+    justifyContent: "center",
+    width: 300,
+    height: 55,
+    backgroundColor: "#054a98",
+    borderRadius: 30,
+    marginHorizontal: 40,
+    cursor: "pointer",
+  },
   options: {
     display: "flex",
     flexDirection: "column",
@@ -168,6 +177,6 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     fontSize: 20,
     color: "#443d3d",
-    fontFamily: "roboto-italic"
+    fontFamily: "roboto-italic",
   },
 });

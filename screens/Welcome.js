@@ -15,7 +15,7 @@ const Welcome = ({ navigation }) => {
             alt="logo"
           />
           <View style={styles.buttonlayout}>
-            <LoginButton onPress={() => navigation.navigate("Login")}>
+            <LoginButton style={styles.buttonlogin} onPress={() => navigation.navigate("Login")}>
               Sign in
             </LoginButton>
             <SIgnupButton onPress={() => navigation.navigate("Signup")}>
@@ -41,7 +41,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    gap: 50,
+    gap: 100,
+  },
+  buttonlogin: {
+    justifyContent: "center",
+    width: 300,
+    height: 55,
+    backgroundColor: "#054a98",
+    borderRadius: 30,
+    marginHorizontal: 40,
+    cursor: "pointer",
   },
   buttonlayout: {
     display: "flex",

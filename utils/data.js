@@ -1,50 +1,56 @@
-export const PLACES = [
+const PLACES = [
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
     {
-        name: "YinkLean services",
+        business: "YinkLean services",
+        address: "national assembly south gate",
+    },
+    {
+        business: "YinkLean services",
         address: "national assembly south gate",
     },
 ]
+
+export default PLACES;

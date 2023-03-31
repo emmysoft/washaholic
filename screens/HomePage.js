@@ -2,20 +2,30 @@ import { useEffect } from "react";
 import { FlatList, Image, StyleSheet, Text, View } from "react-native";
 import IconButton from "../components/IconButton";
 import Services from "../components/Services";
-import { PLACES } from "../utils/data";
+import PLACES from "../utils/data";
 
 const HomePage = ({ navigation }) => {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => {
         return (
-          <IconButton
-            onPress={() => navigation.navigate("Profile")}
-            name="person"
-            size={24}
-            color="#054A98"
-            style={{ paddingRight: 24 }}
-          />
+          <View style={styles.top}>
+            <IconButton
+              onPress={() => navigation.navigate("Profile")}
+              name="person"
+              size={24}
+              color="#054A98"
+              style={{ paddingRight: 24 }}
+            />
+
+            <IconButton
+              name="log-out"
+              size={24}
+              style={styles.logoutstyle}
+              color="#ff0000"
+              onPress={()  => navigation.navigate("Welcome")}
+            />
+          </View>
         );
       },
     });
@@ -33,19 +43,11 @@ const HomePage = ({ navigation }) => {
       </View>
       <FlatList
         data={PLACES}
-        renderItem={({ item }) => {
-          <Services />;
-        }}
+        renderItem={({ item }) => (
+          <Services business={item.business} address={item.address} />
+        )}
+        S
       />
-      {/* <View style={styles.logout}>
-        <IconButton name="log-out" size={24} color="#fff" />
-        <Text
-          style={styles.logoutText}
-          onPress={() => navigation.navigate("Welcome")}
-        >
-          Logout
-        </Text>
-      </View> */}
     </>
   );
 };
@@ -53,6 +55,14 @@ const HomePage = ({ navigation }) => {
 export default HomePage;
 
 const styles = StyleSheet.create({
+  top: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-end",
+    gap: 7,
+    padding: 12,
+  },
   head: {
     display: "flex",
     flexDirection: "column",
@@ -73,26 +83,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "#1976D2",
     fontFamily: "roboto",
+    marginBottom: 40,
   },
-  // logout: {
-  //   display: "flex",
-  //   flexDirection: "row",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   padding: 10,
-  //   borderWidth: 2,
-  //   borderColor: "#ff0000",
-  //   borderRadius: 10,
-  //   backgroundColor: "#ff0000",
-  //   width: "50%",
-  //   marginHorizontal: 90,
-  // },
-  // logoutText: {
-  //   fontFamily: "roboto",
-  //   fontWeight: 300,
-  //   fontSize: 20,
-  //   color: "#fff",
-  //   textAlign: "center",
-  //   padding: 15,
-  // },
+  logoutstyle: {
+    color: "#ff0000",
+  },
 });

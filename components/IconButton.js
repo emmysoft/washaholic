@@ -1,7 +1,7 @@
 import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const ProfileButton = ({ onPress, name, style, size, color }) => {
+const IconButton = ({ onPress, name, style, size, color }) => {
   return (
     <Pressable onPress={onPress} style={style}>
       <Ionicons name={name} size={size} color={color} />
@@ -9,4 +9,4 @@ const ProfileButton = ({ onPress, name, style, size, color }) => {
   );
 };
 
-export default ProfileButton;
+export default IconButton;

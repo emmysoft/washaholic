@@ -1,8 +1,8 @@
 import { StyleSheet, Text, Pressable } from "react-native";
 
-const LoginButton = ({ children, onPress, disabled }) => {
+const LoginButton = ({ children, onPress, style, disabled }) => {
   return (
-    <Pressable onPress={onPress} style={styles.button} disabled={disabled}>
+    <Pressable onPress={onPress} style={style} disabled={disabled}>
       <Text style={styles.buttonText}>{children}</Text>
     </Pressable>
   );
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     height: 55,
     backgroundColor: "#054a98",
     borderRadius: 30,
-    marginHorizontal: 20,
+    marginHorizontal: 40,
     cursor: "pointer",
   },
   buttonText: {
