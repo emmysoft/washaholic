@@ -1,10 +1,9 @@
 import { StyleSheet, ScrollView, Image, View, Text } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 import { useEffect } from "react";
+
 import IconButton from "../components/IconButton";
 
 const Profile = ({ navigation }) => {
-  
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -147,8 +146,9 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   favText: {
-    fontWeight: 700,
+    // fontWeight: 700,
     fontSize: 24,
+    fontFamily: "roboto-bold"
   },
   stars: {
     display: "flex",

@@ -1,15 +1,42 @@
-import { Image, StyleSheet, Text, View, ScrollView } from "react-native";
+import { Image, StyleSheet, Text, View, ScrollView, Alert, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 import CustomInput from "../components/CustomInput";
 import LoginButton from "../components/LoginButton";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH } from "../firebaseconfig";
 
 const SignUp = ({ navigation }) => {
+
+  const auth = FIREBASE_AUTH;
   const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
+  const handleHide = () => setShowPassword(!showPassword);
+
+  const register = async (e) => {
+    e.preventDefault();
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredentials);
+      setLoading(true);
+      Alert.alert("Success", "Account created successfully");
+      navigation.navigate("Home");
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Error", error.message);
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -28,28 +55,37 @@ const SignUp = ({ navigation }) => {
               <CustomInput
                 placeholder="Username"
                 value={username}
-                setValue={setUserName}
+                onChangeText={(text) => setUserName(text)}
               />
               <CustomInput
                 placeholder="Email"
                 value={email}
-                setValue={setEmail}
+                onChangeText={(text) => setEmail(text)}
               />
               <CustomInput
                 placeholder="Password"
                 value={password}
-                setValue={setPassword}
-                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={showPassword}
               />
+              <Ionicons name={showPassword ? "eye-off" : "eye"} size={24} color="#054A98" onPress={handleHide} style={{ position: "absolute", right: 30, top: 160 }} />
             </View>
             <View style={styles.butn}>
-              <LoginButton
-                onPress={() => navigation.navigate("Home")}
-                disabled={false}
-                style={styles.button}
-              >
-                Sign Up
-              </LoginButton>
+              {loading ?
+                <LoginButton
+                  style={styles.button}
+                >
+                  <ActivityIndicator color="#fff" size="large"/>
+                </LoginButton>
+                :
+                <LoginButton
+                  onPress={register}
+                  disabled={false}
+                  style={styles.button}
+                >
+                  Sign Up
+                </LoginButton>
+              }
             </View>
             <View style={styles.options}>
               <View style={styles.signupoptions}>

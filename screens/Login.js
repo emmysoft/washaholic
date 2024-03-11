@@ -1,13 +1,40 @@
-import { View, StyleSheet, Text, Image, ScrollView } from "react-native";
+import { View, StyleSheet, Text, Image, ScrollView, Alert } from "react-native";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 
 import CustomInput from "../components/CustomInput";
 import LoginButton from "../components/LoginButton";
+import { signInWithCredential, signInWithEmailAndPassword } from "firebase/auth";
+import { FIREBASE_AUTH } from "../firebaseconfig";
 
 const Login = ({ navigation }) => {
-  const [username, setUsername] = useState("");
+  const auth = FIREBASE_AUTH;
+
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [loading, setLoading] = useState(false);
+  const [hidePassword, setHidePassword] = useState(true);
+  const handleHide = () => {
+    setHidePassword(!hidePassword);
+  }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try{
+      const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+      console.log(userCredentials);
+      setLoading(true);
+      Alert.alert("Success", "Logged in successfully");
+      navigation.navigate("Home");
+    }
+    catch(error){
+      console.log(error);
+      setLoading(false);
+      Alert.alert("Error", error.message);
+    }
+  }
+
 
   return (
     <>
@@ -22,9 +49,10 @@ const Login = ({ navigation }) => {
             <Text style={styles.loginhead}>Sign In</Text>
             <View style={styles.userInput}>
               <CustomInput
-                placeholder="Email"
-                value={username}
-                setValue={setUsername}
+                placeholder="Your username"
+                type="email"
+                value={email}
+                onChangeText={(text) => setEmail(text)}
               />
             </View>
             <View style={styles.passwordInput}>
@@ -32,8 +60,19 @@ const Login = ({ navigation }) => {
               <CustomInput
                 placeholder="Password"
                 value={password}
-                setValue={setPassword}
-                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+                secureTextEntry={hidePassword}
+              />
+              <Ionicons
+                name={hidePassword ? "eye-off" : "eye"}
+                size={24}
+                color="#054a98"
+                onPress={handleHide}
+                style={{
+                  position: "absolute",
+                  right: 60,
+                  top: 20
+                }}
               />
             </View>
             <View style={styles.loginOptions}>
@@ -50,9 +89,15 @@ const Login = ({ navigation }) => {
                 </Text>
               </View>
             </View>
-            <LoginButton style={styles.button} onPress={() => navigation.navigate("Home")}>
+            {loading ? 
+            <LoginButton style={styles.button} onPress={handleLogin}>
+              Loading...
+            </LoginButton>
+            :
+            <LoginButton style={styles.button} onPress={handleLogin}>
               Sign in
             </LoginButton>
+}
             <View style={styles.options}>
               <Text style={styles.optionText}>
                 New on our platform?

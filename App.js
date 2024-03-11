@@ -63,7 +63,7 @@ export default function App() {
               },
             }}
           />
-          <Stack.Screen
+          <Stack.Screen 
             name="Signup"
             component={SignUp}
             options={{
