@@ -49,7 +49,7 @@ const Login = ({ navigation }) => {
             <Text style={styles.loginhead}>Sign In</Text>
             <View style={styles.userInput}>
               <CustomInput
-                placeholder="Your username"
+                placeholder="Your email"
                 type="email"
                 value={email}
                 onChangeText={(text) => setEmail(text)}

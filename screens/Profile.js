@@ -1,5 +1,7 @@
 import { StyleSheet, ScrollView, Image, View, Text } from "react-native";
 import { useEffect } from "react";
+import tw from "twrnc";
+// import MapView from "react-native-maps";
 
 import IconButton from "../components/IconButton";
 
@@ -21,7 +23,7 @@ const Profile = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <ScrollView style={styles.scroll}>
+    // <ScrollView style={styles.scroll}>
       <View style={styles.container}>
         <Image
           source={require("../assets/avatar.png")}
@@ -29,87 +31,14 @@ const Profile = ({ navigation }) => {
           style={styles.profilePics}
         />
         <Text style={styles.profilename}> Welcome John Doe</Text>
-        <View style={styles.favorite}>
-          <Text style={styles.favText}>Your Favorites </Text>
-          <View style={styles.stars}>
-            <IconButton name="star" size={24} color={"#ffd700"} />
-            <IconButton name="star" size={24} color={"#ffd700"} />
-            <IconButton name="star" size={24} color={"#ffd700"} />
-          </View>
-        </View>
-        <View style={styles.favContainer}>
-          <View style={styles.services}>
-            <Image
-              source={require("../assets/cloths.jpg")}
-              alt="image"
-              style={styles.drycleaner}
-            />
-            <Text style={styles.bizName}>YinkLean Services</Text>
-            <Text style={styles.bizAddress}>
-              National Assembly lodge, Apatapiti, South Gate
-            </Text>
-            <IconButton
-              name="star"
-              size={24}
-              color={"#ffd700"}
-              style={styles.bizStar}
-            />
-          </View>
-          <View style={styles.services}>
-            <Image
-              source={require("../assets/cloths.jpg")}
-              alt="image"
-              style={styles.drycleaner}
-            />
-            <Text style={styles.bizName}>YinkLean Services</Text>
-            <Text style={styles.bizAddress}>
-              National Assembly lodge, Apatapiti, South Gate
-            </Text>
-            <IconButton
-              name="star"
-              size={24}
-              color={"#ffd700"}
-              style={styles.bizStar}
-            />
-          </View>
-          <View style={styles.services}>
-            <Image
-              source={require("../assets/cloths.jpg")}
-              alt="image"
-              style={styles.drycleaner}
-            />
-            <Text style={styles.bizName}>YinkLean Services</Text>
-            <Text style={styles.bizAddress}>
-              National Assembly lodge, Apatapiti, South Gate
-            </Text>
-            <IconButton
-              name="star"
-              size={24}
-              color={"#ffd700"}
-              style={styles.bizStar}
-            />
-          </View>
-        </View>
-        <View style={styles.home}>
-          <IconButton name="log-out" size={24} color="#fff" />
-          <Text
-            style={styles.hometext}
-            onPress={() => navigation.navigate("Welcome")}
-          >
-            Logout
-          </Text>
-        </View>
       </View>
-    </ScrollView>
+    // </ScrollView>
   );
 };
 
 export default Profile;
 
 const styles = StyleSheet.create({
-  scroll: {
-    flex: 1,
-  },
   container: {
     display: "flex",
     flexDirection: "column",

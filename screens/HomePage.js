@@ -1,10 +1,38 @@
-import { useEffect } from "react";
-import { FlatList, Image, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Alert, Button, StyleSheet, View } from "react-native";
 import IconButton from "../components/IconButton";
-import Services from "../components/Services";
-import PLACES from "../utils/data";
+import tw from 'twrnc';
+import MapView, { Marker } from "react-native-maps";
+import * as Location from "expo-location";
 
 const HomePage = ({ navigation }) => {
+
+  const [currentLocation, setCurrentLocation] = useState({
+    latitude: 37.78825,
+    longitude: -122.4324,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  });
+
+  const userLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      setErrorMsg("Permission to access location was denied");
+    }
+    let location = await Location.getCurrentPositionAsync({ enableHighAccuracy: true });
+    setCurrentLocation({
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    });
+    // console.log(location.coords.latitude, location.coords.longitude);
+  };
+
+  useEffect(() => {
+    userLocation();
+  }, []);
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => {
@@ -23,7 +51,7 @@ const HomePage = ({ navigation }) => {
               size={24}
               style={styles.logoutstyle}
               color="#ff0000"
-              onPress={()  => navigation.navigate("Welcome")}
+              onPress={() => navigation.navigate("Welcome")}
             />
           </View>
         );
@@ -33,21 +61,20 @@ const HomePage = ({ navigation }) => {
 
   return (
     <>
-      <View style={styles.head}>
-        <Image
-          source={require("../assets/washaholic.png")}
-          style={styles.homeImage}
-          alt="logo"
-        />
-        <Text style={styles.homeheader}>Nearest Dry Cleaners to you </Text>
+      <View style={tw`flex-1 items-center bg-white`}>
+        <MapView
+          style={tw`w-full h-full`}
+          initialRegion={currentLocation}
+          showsUserLocation={true}
+          followsUserLocation={true}
+        >
+          <Marker
+            coordinate={currentLocation}
+            title="Current Location"
+            description="This is your current location"
+          />
+        </MapView>
       </View>
-      <FlatList
-        data={PLACES}
-        renderItem={({ item }) => (
-          <Services business={item.business} address={item.address} />
-        )}
-        S
-      />
     </>
   );
 };
