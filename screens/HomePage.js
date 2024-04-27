@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, Button, StyleSheet, View } from "react-native";
 import IconButton from "../components/IconButton";
 import tw from 'twrnc';
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import * as Location from "expo-location";
 
 const HomePage = ({ navigation }) => {
@@ -26,7 +26,7 @@ const HomePage = ({ navigation }) => {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     });
-    // console.log(location.coords.latitude, location.coords.longitude);
+    console.log(location.coords.latitude, location.coords.longitude);
   };
 
   useEffect(() => {
@@ -63,9 +63,11 @@ const HomePage = ({ navigation }) => {
     <>
       <View style={tw`flex-1 items-center bg-white`}>
         <MapView
-          style={tw`w-full h-full`}
-          initialRegion={currentLocation}
+          style={tw`w-full h-full`} 
+          provider={PROVIDER_GOOGLE}
+          region={currentLocation}
           showsUserLocation={true}
+          mapType="hybrid"
           followsUserLocation={true}
         >
           <Marker
@@ -75,6 +77,7 @@ const HomePage = ({ navigation }) => {
           />
         </MapView>
       </View>
+      <Button title="Get Location" onPress={userLocation} />
     </>
   );
 };
